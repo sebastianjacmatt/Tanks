@@ -19,6 +19,10 @@
     </p>
     <p>
     Tought of different maps and collision detection options, options were : Box2D, Intersector collison, or tilemap attribute collision. I really want to use libgdx tilemaps for easier level creation but the collision system is so bad. I also want efficiency</p>
+    <p>
+        <b>Decision</b> <br>
+        I have decided to use tilemaps with collision properties for map collision, and i will use bounding box collision detection for players and tanks.
+    </p>
     <h5>DONE List:</h5>
         <ul>
             <li>Implemented proper sprites, can now exstract sprite animations at given row, however only for 16 x 24 sized animation sheets</li>

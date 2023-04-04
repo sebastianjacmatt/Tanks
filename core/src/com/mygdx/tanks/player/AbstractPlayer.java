@@ -33,8 +33,23 @@ public abstract class AbstractPlayer extends Sprite{
         batch.draw(activeAnimation.getKeyFrame(elapsedtime, true), getX(), getY());
     }
     private void update(float delta){
-        //collision handling
-        move();
+        //save positions for potential collision
+        float previousX = getX();
+        float previousY = getY();
+        
+        move(); // calls move functions
+        if (collision()) {
+            //collision detected, therefore reset position
+            setX(previousX);
+            setY(previousY);
+        }
+    }
+    /**
+     * detects collison with player,blocked tile or bullet
+     * @return true if collison occured
+     */
+    private boolean collision() {
+        return true;
     }
     protected void move(){    
         //left for implimentation of each player, for each own controller input

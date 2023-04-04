@@ -8,56 +8,76 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class AbstractPlayer extends Sprite{
-    Animation<TextureRegion> anim;
-    TextureRegion[] upAnimationFrames;
-    TextureRegion[] leftRightAnimationFrames;
-    TextureRegion[] downAnimationFrames;
+    Animation<TextureRegion> activeAnimation;
     float elapsedtime;
+
+    Animation<TextureRegion> upAnim;
+    Animation<TextureRegion> rightAnim;
+    Animation<TextureRegion> leftAnim;
+    Animation<TextureRegion> downAnim;
 
     //Animation animation;
     public AbstractPlayer(Sprite sprite){
         super(sprite);
-        anim = exstractMovementAnimations(sprite.getTexture());
+        downAnim = createAnimation(sprite.getTexture(), 0, false);
+        rightAnim = createAnimation(sprite.getTexture(), 1, false);
+        leftAnim = createAnimation(sprite.getTexture(), 1, true);
+        upAnim = createAnimation(sprite.getTexture(), 2, false);
 
+        activeAnimation = createAnimation(sprite.getTexture(),2, false);
     }
     @Override
     public void draw(Batch batch) {
         elapsedtime += Gdx.graphics.getDeltaTime();
         update(Gdx.graphics.getDeltaTime());
-        batch.draw(anim.getKeyFrame(elapsedtime, true), getX(), getY());
+        batch.draw(activeAnimation.getKeyFrame(elapsedtime, true), getX(), getY());
     }
     private void update(float delta){
         //collision handling
         move();
     }
-    protected void move(){
+    protected void move(){    
         //left for implimentation of each player, for each own controller input
     }
 
-    private Animation<TextureRegion> exstractMovementAnimations(Texture animationSheet){
-        //https://www.youtube.com/watch?v=SVyYvi0I6Bc&ab_channel=Gamefromscratch
-        TextureRegion[][] tmpFrames = TextureRegion.split(animationSheet, 16, 24);
-        //TODO create an animationhandler
-        upAnimationFrames = new TextureRegion[tmpFrames.length];
-        leftRightAnimationFrames = new TextureRegion[tmpFrames.length];
-        downAnimationFrames = new TextureRegion[tmpFrames.length];
-        int index = 0;
-        for (int i = 0; i < tmpFrames.length; i++) {
-            for (int j = 0; j < tmpFrames.length; j++) {
-                if (index < 5) {
-                    upAnimationFrames[j] = tmpFrames[j][i];
-                } else if(index < 11){
-                    leftRightAnimationFrames[j] = tmpFrames[j][i];
-                } else if(index < 17){
-                    downAnimationFrames[j] = tmpFrames[j][i];
-                }
+    /**
+     * takes a raw animation sheet and exstract (row) indexed animation
+     * @param rawAnimationSheet raw texture of animations
+     * @param row of animation in rawAnimationSheet
+     * @return an Animation
+     */
+    private Animation<TextureRegion> createAnimation(Texture rawAnimationSheet, int row, boolean inverted){
+        TextureRegion[][] textureRegion2DArray = TextureRegion.split(rawAnimationSheet, 16, 24);
+        Animation<TextureRegion> anim = new Animation<TextureRegion>(1f/textureRegion2DArray[row].length, exstractAnimationFrames(textureRegion2DArray, row));
+        // Flip the frames horizontally for left/right animation
+        if (row == 1 && inverted) {
+            for (TextureRegion frame : textureRegion2DArray[row]) {
+                frame.flip(true, false);
             }
         }
-        anim = new Animation<TextureRegion>(1f/6f, upAnimationFrames);
         return anim;
     }
-    public void moveUp(){setY((getY() + 1));}
-    public void moveDown(){setY((getY() - 1));}
-    public void moveLeft(){setX((getX() - 1));}
-    public void moveRight(){setX((getX() + 1));}
+    private TextureRegion[] exstractAnimationFrames(TextureRegion[][] animationSheet,int row){
+        TextureRegion[] animationFrames = new TextureRegion[animationSheet[row].length];
+        for (int i = 0; i < animationSheet[row].length; i++) {
+            animationFrames[i] = animationSheet[row][i];
+        }
+        return animationFrames;
+    }
+    public void moveUp(){
+        setY((getY() + 1));
+        activeAnimation = upAnim;
+    }
+    public void moveDown(){
+        setY((getY() - 1));
+        activeAnimation = downAnim;
+    }
+    public void moveLeft(){
+        setX((getX() - 1));
+        activeAnimation = leftAnim;
+    }
+    public void moveRight(){
+        setX((getX() + 1));
+        activeAnimation = rightAnim;
+    }
 }

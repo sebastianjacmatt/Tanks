@@ -1,4 +1,4 @@
-package com.mygdx.tanks;
+package com.mygdx.tanks.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -49,7 +49,7 @@ public abstract class AbstractPlayer extends Sprite{
      * @return true if collison occured
      */
     private boolean collision() {
-        return true;
+        return false;
     }
     protected void move(){    
         //left for implimentation of each player, for each own controller input

@@ -20,6 +20,10 @@
     <p>
     Tought of different maps and collision detection options, options were : Box2D, Intersector collison, or tilemap attribute collision. I really want to use libgdx tilemaps for easier level creation but the collision system is so bad. I also want efficiency</p>
     <p>
+    <p>
+        <b>roadmap</b> 
+        ---->|Map & Collision|---->|Bullets and turrets|---->|MVP Acheived|---->|Better documentation & UML diagram|---->|
+    </p>
         <b>Decision</b> <br>
         I have decided to use tilemaps with collision properties for map collision, and i will use bounding box collision detection for players and tanks.
     </p>

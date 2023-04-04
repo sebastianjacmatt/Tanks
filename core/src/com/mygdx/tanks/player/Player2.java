@@ -1,4 +1,4 @@
-package com.mygdx.tanks;
+package com.mygdx.tanks.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;

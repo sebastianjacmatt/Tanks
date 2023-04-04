@@ -1,11 +1,11 @@
-package com.mygdx.tanks;
+package com.mygdx.tanks.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Player1 extends AbstractPlayer{
-    Player1(Sprite sprite){
+    public Player1(Sprite sprite){
         super(sprite);
     }
     @Override

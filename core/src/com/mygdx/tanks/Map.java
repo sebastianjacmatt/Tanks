@@ -54,4 +54,8 @@ public class Map {
     public void dispose() {
         tiledMap.dispose();
     }
+
+    public TiledMap getTileMap() {
+        return tiledMap;
+    }
 }

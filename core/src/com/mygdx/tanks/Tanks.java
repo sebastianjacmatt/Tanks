@@ -1,8 +1,6 @@
 package com.mygdx.tanks;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,7 +15,7 @@ public class Tanks extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Sprite(new Texture("badlogic.jpg"));
+		img = new Sprite(new Texture("bombermanSheet.png"));
 		player1 = new Player1(img);
 		player2 = new Player2(img);
 	}

@@ -1,5 +1,9 @@
 @startuml tanks
-abstract class AbstractPlayer {
+interface Collidable {
+    + move()
+}
+
+abstract class AbstractPlayer implements Collidable {
     - collidables : ArrayList
     - elapsedtime : float
     - currentActiveAnimation : Animation
@@ -14,21 +18,23 @@ abstract class AbstractPlayer {
     # move()
     - createAnimation()
     
-    + moveUp()
-    + moveDown()
-    + moveLeft()
-    + moveRight()
 }
 
-class Player1 {
-    Player1 only stands for moevement
+class CollisionDetector {
+    - map : Map
+
+    + detectCollisions(collidable: Collidable)
+}
+
+class Player1 implements Collidable {
     + move()
 }
-class Player2 {
-    Player2 only stands for moevement
+
+class Player2 implements Collidable {
     + move()
 }
-class Map{
+
+class Map {
     - tiledMap : TiledMap
     - layer : TiledMapTileLayer
     - tileWidht : int
@@ -39,21 +45,29 @@ class Map{
 
     + getCollidableRectangles() : ArrayList
 }
-class Tanks{
+
+class Tanks {
     - batch : SpriteBatch
     - img : Sprite
-    - player1 : Player1
-    - player2 : Player2
+    - players : ArrayList<Player>
 
     - tiledMapRenderer : TileMapRenderer
     - camera : OrthographicCamera
     - map : Map
+    - collisionDetector : CollisionDetector
+
+    + addPlayer(player: Collidable)
+    + detectCollisions()
 }
+
 Tanks --> Map
-Tanks --> Player1 : Instantiate a player1
-Tanks --> Player2 : Instantiate a player2
-Player1 --> Tanks : takes map from Tanks to handle collision in itself
-Player2 --> Tanks : takes map from Tanks to handle collision in itself
+Tanks --> CollisionDetector : checks if object collides
+Tanks --> Player1
+Tanks --> Player2
+
+CollisionDetector --> Map : uses map
+CollisionDetector --> Collidable : uses interface
+
 Player1 --|> AbstractPlayer
 Player2 --|> AbstractPlayer
 @enduml

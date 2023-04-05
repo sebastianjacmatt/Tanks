@@ -31,12 +31,13 @@
         <ul>
             <li>Implemented proper sprites, can now exstract sprite animations at given row, however only for 16 x 24 sized animation sheets</li>
             <li>implement proper animation shifting</li>
+            <li>implement collision with walls, still needs collision with borders and other players, todo this i need refractor to solid principles</li>
+            <li>Implement some sort of map</li>
         </ul>
     <h5>TODO List:</h5>
         <ul>
             <li>Create propper animation handler, very limited animation handler in player now</li>
             <li>Create simple tank sprites, or buy some</li>
-            <li>Implement some sort of map</li>
-            <li>Implement collison with map and players, this will probably lead to needed exstension of controller</li>
+            <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
         </ul>
 </div>

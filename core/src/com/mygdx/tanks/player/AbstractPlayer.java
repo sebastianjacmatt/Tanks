@@ -26,7 +26,7 @@ public abstract class AbstractPlayer extends Sprite{
         super(sprite);
 
         setSize(16,24);
-        
+
         downAnim = createAnimation(sprite.getTexture(), 0, false);
         rightAnim = createAnimation(sprite.getTexture(), 1, false);
         leftAnim = createAnimation(sprite.getTexture(), 1, true);
@@ -63,7 +63,6 @@ public abstract class AbstractPlayer extends Sprite{
             if (Intersector.overlaps(this.getBoundingRectangle(),rectangle)) {
                 return true;
             }
-            //TODO : Implement better SOLID Collison, in separate class
         }
         return false;
     }

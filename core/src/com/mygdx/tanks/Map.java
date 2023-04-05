@@ -3,9 +3,7 @@ package com.mygdx.tanks;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
@@ -40,7 +38,7 @@ public class Map {
         }
         return collidableRectangles;
     }
-    
+
     public TextureRegion getTile(int x, int y) {
         return layer.getCell(x, y).getTile().getTextureRegion();
     }

@@ -13,15 +13,15 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.tanks.Map;
 
 public abstract class AbstractPlayer extends Sprite{
-    Animation<TextureRegion> activeAnimation;
-    float elapsedtime;
+    private Animation<TextureRegion> activeAnimation;
+    private float elapsedtime;
 
-    Animation<TextureRegion> upAnim;
-    Animation<TextureRegion> rightAnim;
-    Animation<TextureRegion> leftAnim;
-    Animation<TextureRegion> downAnim;
+    private Animation<TextureRegion> upAnim;
+    private Animation<TextureRegion> rightAnim;
+    private Animation<TextureRegion> leftAnim;
+    private Animation<TextureRegion> downAnim;
 
-    ArrayList<Rectangle> collidables;
+    private ArrayList<Rectangle> collidables;
     public AbstractPlayer(Sprite sprite, Map map){
         super(sprite);
 

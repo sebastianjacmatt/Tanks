@@ -41,3 +41,17 @@
             <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
         </ul>
 </div>
+<div>
+    <h2>SITREP(05.04.2023)</h2>
+    <p>Most of the day has been used trying to implement junit test in the libgdx project, however no progress is made. Also downloaded plantuml for better overview of program<p>
+    <h5>DONE List:</h5>
+    <ul>
+        <li></li>
+    </ul>
+    <h5>TODO List:</h5>
+        <ul>
+            <li>Create propper animation handler, very limited animation handler in player now</li>
+            <li>Create simple tank sprites, or buy some</li>
+            <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
+        </ul>
+</div>

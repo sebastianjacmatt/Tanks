@@ -13,14 +13,14 @@ import com.mygdx.tanks.player.Player1;
 import com.mygdx.tanks.player.Player2;
 
 public class Tanks extends ApplicationAdapter {
-	SpriteBatch batch;
-	Sprite img;
-	Player1 player1;
-	Player2 player2;
+	private SpriteBatch batch;
+	private Sprite img;
+	private Player1 player1;
+	private Player2 player2;
 
-	TiledMapRenderer tiledMapRenderer;
-	OrthographicCamera camera;
-	Map map;
+	private TiledMapRenderer tiledMapRenderer;
+	private OrthographicCamera camera;
+	private Map map;
 
 	@Override
 	public void create () {

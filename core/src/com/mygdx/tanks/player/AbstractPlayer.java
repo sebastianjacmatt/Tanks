@@ -1,11 +1,16 @@
 package com.mygdx.tanks.player;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.tanks.Map;
 
 public abstract class AbstractPlayer extends Sprite{
     Animation<TextureRegion> activeAnimation;
@@ -16,15 +21,20 @@ public abstract class AbstractPlayer extends Sprite{
     Animation<TextureRegion> leftAnim;
     Animation<TextureRegion> downAnim;
 
-    //Animation animation;
-    public AbstractPlayer(Sprite sprite){
+    ArrayList<Rectangle> collidables;
+    public AbstractPlayer(Sprite sprite, Map map){
         super(sprite);
+
+        setSize(16,24);
+        
         downAnim = createAnimation(sprite.getTexture(), 0, false);
         rightAnim = createAnimation(sprite.getTexture(), 1, false);
         leftAnim = createAnimation(sprite.getTexture(), 1, true);
         upAnim = createAnimation(sprite.getTexture(), 2, false);
 
         activeAnimation = createAnimation(sprite.getTexture(),2, false);
+
+        collidables = map.getCollidableRectangles();
     }
     @Override
     public void draw(Batch batch) {
@@ -49,6 +59,12 @@ public abstract class AbstractPlayer extends Sprite{
      * @return true if collison occured
      */
     private boolean collision() {
+        for (Rectangle rectangle : collidables) {
+            if (Intersector.overlaps(this.getBoundingRectangle(),rectangle)) {
+                return true;
+            }
+            //TODO : Implement better SOLID Collison, in separate class
+        }
         return false;
     }
     protected void move(){    

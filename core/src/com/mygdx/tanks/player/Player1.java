@@ -3,10 +3,11 @@ package com.mygdx.tanks.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.mygdx.tanks.Map;
 
 public class Player1 extends AbstractPlayer{
-    public Player1(Sprite sprite){
-        super(sprite);
+    public Player1(Sprite sprite, Map map){
+        super(sprite, map);
     }
     @Override
     protected void move() {

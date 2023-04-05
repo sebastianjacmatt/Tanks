@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.tanks.player.Player1;
 import com.mygdx.tanks.player.Player2;
@@ -26,11 +28,11 @@ public class Tanks extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Sprite(new Texture("bombermanSheet.png"));
-		player1 = new Player1(img);
-		player2 = new Player2(img);
-		
-		map = new Map("assets/tankMap1.tmx");
+		map = new Map("assets/tileMapTest1.tmx");
 
+		player1 = new Player1(img, map);
+		player2 = new Player2(img, map);
+		
 
         // Create a camera that will show the map
         camera = new OrthographicCamera();

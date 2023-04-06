@@ -11,7 +11,7 @@ public class Player2 extends AbstractPlayer {
         super(sprite, map);
     }
     @Override
-    protected void move() {
+    public void move() {
         if (Gdx.input.isKeyPressed(Keys.UP)) {moveUp();}
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {moveDown();}
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {moveLeft();}

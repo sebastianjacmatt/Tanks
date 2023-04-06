@@ -22,6 +22,8 @@ public class Tanks extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private Map map;
 
+	private CollisionDetector collisionDetector;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -31,7 +33,6 @@ public class Tanks extends ApplicationAdapter {
 		player1 = new Player1(img, map);
 		player2 = new Player2(img, map);
 		
-
         // Create a camera that will show the map
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -39,6 +40,8 @@ public class Tanks extends ApplicationAdapter {
 
         // Create a TiledMapRenderer to render the map
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map.getTileMap(), 1f);
+
+		collisionDetector = new CollisionDetector(map);
 	}
 
 	@Override
@@ -53,13 +56,45 @@ public class Tanks extends ApplicationAdapter {
 		// Render the map using the camera's projection matrix
 		tiledMapRenderer.setView(camera);
 		tiledMapRenderer.render();
-	
+		
+		//handle game collision
+		this.update(Gdx.graphics.getDeltaTime());
+
 		// Render the players
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		player2.draw(batch);
 		player1.draw(batch);
 		batch.end();
+	}
+	/**
+	 * Right now only a function checking player collision every Gdx.graphics.getDeltaTime
+	 * @param delta set to Gdx.graphics.getDeltaTime
+	 */
+	private void update(float delta){
+		//TODO : DRY code
+		float prevX1 = player1.getX();
+		float prevY1 = player1.getY();
+		player1.move();
+		if (detectCollisions(player1)) {
+			player1.setX(prevX1);
+			player1.setY(prevY1);
+		}
+		float prevX2 = player2.getX();
+		float prevY2 = player2.getY();
+		player2.move();
+		if (detectCollisions(player2)) {
+			player2.setX(prevX2);
+			player2.setY(prevY2);
+		}
+	}
+	/**
+	 * A method detecting collision between collidables and map
+	 * @param collidable object inhereting Collidable interface
+	 * @return true if collidable collides with map
+	 */
+	public boolean detectCollisions(Collidable collidable){
+		return collisionDetector.detectCollisions(collidable);
 	}
 	
 	@Override

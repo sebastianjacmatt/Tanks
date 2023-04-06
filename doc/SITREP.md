@@ -44,7 +44,7 @@
 <div>
     <h2>SITREP(05.04.2023)</h2>
     <p>Most of the day has been used trying to implement junit test in the libgdx project, however no progress is made. Also downloaded plantuml for better overview of program<p>
-    <p>Created new branch to refractor players and collision. I will Exstract the collision mechanism out of players and into the ApplicationAdapter (Tanks). Then collision will be handled there. The refractored code will then check collision on movement by using newly created Collision Detector class. This class uses a Collidable interface which player1 and player2 implements.</p>
+    <p>Created new branch to refractor players and collision. I will Exstract the collision mechanism out of players and into the ApplicationAdapter (Tanks). Then collision will be handled there. The refractored code will then check collision on movement by using newly created CollisionDetector class. This class uses a Collidable interface which player1 and player2 implements.</p>
     <h5>DONE List:</h5>
     <ul>
         <li></li>

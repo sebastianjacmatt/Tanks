@@ -1,18 +1,16 @@
 package com.mygdx.tanks.player;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.tanks.Collidable;
 import com.mygdx.tanks.Map;
 
-public abstract class AbstractPlayer extends Sprite{
+public abstract class AbstractPlayer extends Sprite implements Collidable{
     private Animation<TextureRegion> activeAnimation;
     private float elapsedtime;
 
@@ -21,7 +19,6 @@ public abstract class AbstractPlayer extends Sprite{
     private Animation<TextureRegion> leftAnim;
     private Animation<TextureRegion> downAnim;
 
-    private ArrayList<Rectangle> collidables;
     public AbstractPlayer(Sprite sprite, Map map){
         super(sprite);
 
@@ -33,43 +30,16 @@ public abstract class AbstractPlayer extends Sprite{
         upAnim = createAnimation(sprite.getTexture(), 2, false);
 
         activeAnimation = createAnimation(sprite.getTexture(),2, false);
-
-        collidables = map.getCollidableRectangles();
     }
     @Override
     public void draw(Batch batch) {
         elapsedtime += Gdx.graphics.getDeltaTime();
-        update(Gdx.graphics.getDeltaTime());
         batch.draw(activeAnimation.getKeyFrame(elapsedtime, true), getX(), getY());
     }
-    private void update(float delta){
-        //save positions for potential collision
-        float previousX = getX();
-        float previousY = getY();
-        
-        move(); // calls move functions
-        if (collision()) {
-            //collision detected, therefore reset position
-            setX(previousX);
-            setY(previousY);
-        }
-    }
-    /**
-     * detects collison with player,blocked tile or bullet
-     * @return true if collison occured
-     */
-    private boolean collision() {
-        for (Rectangle rectangle : collidables) {
-            if (Intersector.overlaps(this.getBoundingRectangle(),rectangle)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    protected void move(){    
+    public void move(){    
         //left for implimentation of each player, for each own controller input
     }
-
+    
     /**
      * takes a raw animation sheet and exstract (row) indexed animation
      * @param rawAnimationSheet raw texture of animations
@@ -109,5 +79,10 @@ public abstract class AbstractPlayer extends Sprite{
     public void moveRight(){
         setX((getX() + 1));
         activeAnimation = rightAnim;
+    }
+
+    @Override
+    public Rectangle getRectangle() {
+        return this.getBoundingRectangle();
     }
 }

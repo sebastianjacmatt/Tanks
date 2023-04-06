@@ -16,8 +16,7 @@ abstract class AbstractPlayer implements Collidable {
     - update()
     - collision()
     # move()
-    - createAnimation()
-    
+    - createAnimation() 
 }
 
 class CollisionDetector {

@@ -65,7 +65,6 @@ public abstract class AbstractEntity extends Sprite implements Collidable, Anima
     protected void idle(){
         setX(getX());
         setY(getY());
-        super.setRotation(0);
     }
     public Sprite getSprite(){
         return sprite;

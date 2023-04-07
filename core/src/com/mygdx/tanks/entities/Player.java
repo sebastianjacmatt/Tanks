@@ -57,7 +57,6 @@ public class Player extends AbstractEntity{
         else {
             this.idle();
             dir = Directions.idle;
-            this.setRotation(0);
         }
     }    
     public Directions getDirection(){

@@ -63,16 +63,21 @@
     implemented previosly discussed refractor, however i had to add a getRectangle to the Collidable inteface, this makes sense because to check if something collides, we need its rectangle.
     </p>
     <p>
-    I discovered DRY code in the collision handling of the player, this lead to me refractoring the player input handling aswell. Now the player has two different controllers, inheriting form a controllable interface, this interface only has four directions to move in, controller should probably be moved outside player and instead taken as an paramiter when creating players.
+    I discovered DRY code in the collision handling of the player, this lead to me refractoring the player input handling aswell. Now the player is created with a Controllable(interface) controller. The interface has enums in all four directions and an idle enum. This should be exstended or changed later later. Depending on how i want movement to work.
+    </p>
+    <p>
+    I would say that i am done with refractoring the code for now, Some movement was removed, however i find this to be OK since i am unsure of movement for now. However the code should be exstendable and editable. Therefore having compleated the objective of refractoring the player and the collision detection i merge CollisionPlayerRefracotr into main.
     </p>
     <h5>DONE List:</h5>
-    <ul>
-        <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
-    </ul>
+        <ul>
+            <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
+            <li>refractor player to prevent furhter dry code<li>
+        </ul>
     <h5>TODO List:</h5>
         <ul>
+            <li>Implement bullets and turrets<li>
+            <li>Exstend directions a player can move in</li>
             <li>Create propper animation handler, very limited animation handler in player now</li>
             <li>Create simple tank sprites, or buy some</li>
-            <li>refractor player to prevent furhter dry code<li>
         </ul>
 </div>

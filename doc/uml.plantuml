@@ -1,6 +1,12 @@
 @startuml tanks
 interface Collidable {
     + move()
+    + getRectangle()
+}
+interface Controllable {
+  enum DIRECTIONS up,down,left,right,udle
+  + registerInput()
+
 }
 
 abstract class AbstractPlayer implements Collidable {
@@ -25,12 +31,14 @@ class CollisionDetector {
     + detectCollisions(collidable: Collidable)
 }
 
-class Player1 implements Collidable {
+class Player implements Collidable {
     + move()
 }
-
-class Player2 implements Collidable {
-    + move()
+class Player1Controller implements Controllable{
+    + registerInput()
+}
+class Player2Controller implements Controllable{
+    + registerInput()
 }
 
 class Map {
@@ -55,18 +63,25 @@ class Tanks {
     - map : Map
     - collisionDetector : CollisionDetector
 
-    + addPlayer(player: Collidable)
+    + create()
+    + render()
+
+    + update()
     + detectCollisions()
+    + checkPlayerCollision()
+    + detectCollisions()
+
+    + dispose()
+
 }
 
 Tanks --> Map
-Tanks --> CollisionDetector : checks if object collides
-Tanks --> Player1
-Tanks --> Player2
+Tanks --> CollisionDetector
+Tanks --> Player
 
-CollisionDetector --> Map : uses map
-CollisionDetector --> Collidable : uses interface
+CollisionDetector --> Map
+CollisionDetector --> Collidable
 
-Player1 --|> AbstractPlayer
-Player2 --|> AbstractPlayer
+Player --|> AbstractPlayer
+Player --> Controllable : assigns a controller on creation
 @enduml

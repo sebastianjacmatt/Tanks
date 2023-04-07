@@ -1,5 +1,7 @@
 package com.mygdx.tanks;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,20 +11,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.tanks.player.Player1;
-import com.mygdx.tanks.player.Player2;
+import com.mygdx.tanks.player.Player;
+import com.mygdx.tanks.player.Player1Controller;
+import com.mygdx.tanks.player.Player2Controller;
+import com.badlogic.gdx.InputMultiplexer;
 
 public class Tanks extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Sprite img;
-	private Player1 player1;
-	private Player2 player2;
+	
+	ArrayList<Player> playerList;
 
 	private TiledMapRenderer tiledMapRenderer;
 	private OrthographicCamera camera;
 	private Map map;
 
 	private CollisionDetector collisionDetector;
+	InputMultiplexer inputMultiplexer;
 
 	@Override
 	public void create () {
@@ -30,8 +35,9 @@ public class Tanks extends ApplicationAdapter {
 		img = new Sprite(new Texture("bombermanSheet.png"));
 		map = new Map("assets/tileMapTest1.tmx");
 
-		player1 = new Player1(img, map);
-		player2 = new Player2(img, map);
+		playerList = new ArrayList<Player>();
+		playerList.add(new Player(img,new Player1Controller()));
+		playerList.add(new Player(img,new Player2Controller()));
 		
         // Create a camera that will show the map
         camera = new OrthographicCamera();
@@ -48,7 +54,7 @@ public class Tanks extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 		// Set the camera position to center on player 1
-		camera.position.set(player1.getX() + player1.getWidth() / 2, player1.getY() + player1.getHeight() / 2, 0);
+		camera.position.set(playerList.get(0).getX() + playerList.get(0).getWidth() / 2, playerList.get(0).getY() + playerList.get(0).getHeight() / 2, 0);
 
 		// Update the camera
 		camera.update();
@@ -63,29 +69,28 @@ public class Tanks extends ApplicationAdapter {
 		// Render the players
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		player2.draw(batch);
-		player1.draw(batch);
+		for (Player player : playerList) {
+			player.draw(batch);
+		}
 		batch.end();
 	}
 	/**
 	 * Right now only a function checking player collision every Gdx.graphics.getDeltaTime
+	 * Essensial for player movement
 	 * @param delta set to Gdx.graphics.getDeltaTime
 	 */
 	private void update(float delta){
-		//TODO : DRY code
-		float prevX1 = player1.getX();
-		float prevY1 = player1.getY();
-		player1.move();
-		if (detectCollisions(player1)) {
-			player1.setX(prevX1);
-			player1.setY(prevY1);
+		for (Player player : playerList) {
+			checkPlayerCollision(player);
 		}
-		float prevX2 = player2.getX();
-		float prevY2 = player2.getY();
-		player2.move();
-		if (detectCollisions(player2)) {
-			player2.setX(prevX2);
-			player2.setY(prevY2);
+	}
+	private void checkPlayerCollision(Player player){
+		float prevX = player.getX();
+		float prevY = player.getY();
+		player.move();
+		if (detectCollisions(player)) {
+			player.setX(prevX);
+			player.setY(prevY);
 		}
 	}
 	/**
@@ -96,7 +101,6 @@ public class Tanks extends ApplicationAdapter {
 	public boolean detectCollisions(Collidable collidable){
 		return collisionDetector.detectCollisions(collidable);
 	}
-	
 	@Override
 	public void dispose () {
 		batch.dispose();

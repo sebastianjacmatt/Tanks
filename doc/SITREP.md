@@ -47,12 +47,32 @@
     <p>Created new branch to refractor players and collision. I will Exstract the collision mechanism out of players and into the ApplicationAdapter (Tanks). Then collision will be handled there. The refractored code will then check collision on movement by using newly created CollisionDetector class. This class uses a Collidable interface which player1 and player2 implements.</p>
     <h5>DONE List:</h5>
     <ul>
-        <li></li>
+        <li>Wrote documentation and created plantuml diagram</li>
     </ul>
     <h5>TODO List:</h5>
         <ul>
             <li>Create propper animation handler, very limited animation handler in player now</li>
             <li>Create simple tank sprites, or buy some</li>
             <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
+        </ul>
+</div>
+
+<div>
+    <h2>SITREP(06.04.2023)</h2>
+    <p>
+    implemented previosly discussed refractor, however i had to add a getRectangle to the Collidable inteface, this makes sense because to check if something collides, we need its rectangle.
+    </p>
+    <p>
+    I discovered DRY code in the collision handling of the player, this lead to me refractoring the player input handling aswell. Now the player has two different controllers, inheriting form a controllable interface, this interface only has four directions to move in, controller should probably be moved outside player and instead taken as an paramiter when creating players.
+    </p>
+    <h5>DONE List:</h5>
+    <ul>
+        <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
+    </ul>
+    <h5>TODO List:</h5>
+        <ul>
+            <li>Create propper animation handler, very limited animation handler in player now</li>
+            <li>Create simple tank sprites, or buy some</li>
+            <li>refractor player to prevent furhter dry code<li>
         </ul>
 </div>

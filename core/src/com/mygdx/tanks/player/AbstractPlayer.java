@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.tanks.Collidable;
-import com.mygdx.tanks.Map;
 
 public abstract class AbstractPlayer extends Sprite implements Collidable{
     private Animation<TextureRegion> activeAnimation;
@@ -19,9 +18,8 @@ public abstract class AbstractPlayer extends Sprite implements Collidable{
     private Animation<TextureRegion> leftAnim;
     private Animation<TextureRegion> downAnim;
 
-    public AbstractPlayer(Sprite sprite, Map map){
+    public AbstractPlayer(Sprite sprite){
         super(sprite);
-
         setSize(16,24);
 
         downAnim = createAnimation(sprite.getTexture(), 0, false);
@@ -39,7 +37,7 @@ public abstract class AbstractPlayer extends Sprite implements Collidable{
     public void move(){    
         //left for implimentation of each player, for each own controller input
     }
-    
+
     /**
      * takes a raw animation sheet and exstract (row) indexed animation
      * @param rawAnimationSheet raw texture of animations
@@ -64,21 +62,27 @@ public abstract class AbstractPlayer extends Sprite implements Collidable{
         }
         return animationFrames;
     }
-    public void moveUp(){
+    protected void moveUp(){
         setY((getY() + 1));
         activeAnimation = upAnim;
     }
-    public void moveDown(){
+    protected void moveDown(){
         setY((getY() - 1));
         activeAnimation = downAnim;
     }
-    public void moveLeft(){
+    protected void moveLeft(){
         setX((getX() - 1));
         activeAnimation = leftAnim;
     }
-    public void moveRight(){
+    protected void moveRight(){
         setX((getX() + 1));
         activeAnimation = rightAnim;
+    }
+    protected void idle(){
+        setX(getX());
+        setY(getY());
+        //TODO : Implement and create idle animation
+        //activeAnimation = idleAnim;
     }
 
     @Override

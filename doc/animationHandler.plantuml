@@ -48,9 +48,6 @@ class Player2Controller implements Controllable{
 class PlayerAnimations implements Animated {
     
 }
-class BulletAnimations implements Animated {
-
-}
 
 class Map {
     - tiledMap : TiledMap
@@ -98,8 +95,5 @@ Player --> Controllable : assigns a controller on creation
 Player --> PlayerAnimations
 
 AbstractEntity --|> Animated
-
-Bullet --|> AbstractEntity
-Bullet --> BulletAnimations
 
 @enduml

@@ -12,34 +12,53 @@ public class Player extends AbstractEntity{
     public Player(Sprite sprite, Controllable controller){
         super(sprite);
         this.controller = controller;
-        setSize(16,24);
+        setSize(24,26);
         dir = Directions.north;
         this.animations = new PlayerAnimation(this);
     }
+    /**
+     * A function handling input from Controllable player
+     */
     public void move() {
-        switch (controller.registerInput()) {
-            case north:
+        Directions input = controller.registerInput();
+        if (input == Directions.north) {
             dir = Directions.north;
-            this.moveUp();
-            break;
-            case south:
-            dir = Directions.south;
-            this.moveDown();
-            break;
-            case west:
-            dir = Directions.west;
-            this.moveLeft();
-            break;
-            case east:
+            this.moveNorth();
+        }
+        else if (input == Directions.east) {
             dir = Directions.east;
-            this.moveRight();
-            break;
-            default:
+            this.moveEast();
+        }
+        else if (input == Directions.south) {
+            dir = Directions.south;
+            this.moveSouth();
+        }
+        else if (input == Directions.west) {
+            dir = Directions.west;
+            this.moveWest();
+        }
+        else if (input == Directions.northEast) {
+            dir = Directions.northEast;
+            this.moveNorthEast();
+        }
+        else if (input == Directions.southEast) {
+            dir = Directions.southEast;
+            this.moveSouthEast();
+        }
+        else if (input == Directions.southWest) {
+            dir = Directions.southWest;
+            this.moveSouthWest();
+        }
+        else if (input == Directions.northWest) {
+            dir = Directions.northWest;
+            this.moveNorthWest();
+        }
+        else {
             this.idle();
             dir = Directions.idle;
-            break;
+            this.setRotation(0);
         }
-    }
+    }    
     public Directions getDirection(){
         try {
             return dir;

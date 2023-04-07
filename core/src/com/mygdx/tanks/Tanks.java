@@ -32,7 +32,7 @@ public class Tanks extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Sprite(new Texture("bombermanSheet.png"));
+		img = new Sprite(new Texture("tankSheet.png"));
 		map = new Map("assets/tileMapTest1.tmx");
 
 		playerList = new ArrayList<Player>();

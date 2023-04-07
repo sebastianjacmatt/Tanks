@@ -7,17 +7,20 @@ import com.mygdx.tanks.entities.Player;
 
 public class PlayerAnimation {
     private Animation<TextureRegion> northAnim;
+    /*
     private Animation<TextureRegion> eastAnim;
-    private Animation<TextureRegion> westAnim;
     private Animation<TextureRegion> southAnim;
+    private Animation<TextureRegion> westAnim;
+    private Animation<TextureRegion> northEastAnim;
+    private Animation<TextureRegion> southEastAnim;
+    private Animation<TextureRegion> southWestAnim;
+    private Animation<TextureRegion> northWestAnim;
+    */
 
     Player player;
     public PlayerAnimation(Player player){
         this.player = player;
-        southAnim = createAnimation(player.getSprite().getTexture(), 0, false);
-        eastAnim = createAnimation(player.getSprite().getTexture(), 1, false);
-        westAnim = createAnimation(player.getSprite().getTexture(), 1, true);
-        northAnim = createAnimation(player.getSprite().getTexture(), 2, false);
+        northAnim = createAnimation(player.getSprite().getTexture(), 0, false, 24, 26);
     }
     /**
      * takes a raw animation sheet and exstract (row) indexed animation
@@ -25,13 +28,13 @@ public class PlayerAnimation {
      * @param row of animation in rawAnimationSheet
      * @return an Animation
      */
-    private Animation<TextureRegion> createAnimation(Texture rawAnimationSheet, int row, boolean inverted){
-        TextureRegion[][] textureRegion2DArray = TextureRegion.split(rawAnimationSheet, 16, 24);
+    private Animation<TextureRegion> createAnimation(Texture rawAnimationSheet, int row, boolean inverted, int textureWidht, int textureHeigh){
+        TextureRegion[][] textureRegion2DArray = TextureRegion.split(rawAnimationSheet, textureWidht, textureHeigh);
         Animation<TextureRegion> anim = new Animation<TextureRegion>(1f/textureRegion2DArray[row].length, exstractAnimationFrames(textureRegion2DArray, row));
         // Flip the frames horizontally for left/right animation
         if (row == 1 && inverted) {
             for (TextureRegion frame : textureRegion2DArray[row]) {
-                frame.flip(true, false);
+                frame.flip(true, true);
             }
         }
         return anim;
@@ -47,12 +50,6 @@ public class PlayerAnimation {
         switch (player.getDirection()) {
             case north:
             return northAnim;
-            case east:
-            return eastAnim;
-            case south:
-            return southAnim;
-            case west:
-            return westAnim;
             default:
             return northAnim;
         }

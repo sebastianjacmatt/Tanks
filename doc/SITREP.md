@@ -85,3 +85,25 @@
             <li>Create simple tank sprites, or buy some</li>
         </ul>
 </div>
+<div>
+    <h2>SITREP(07.06.2023)</h2>
+    <p>
+    I extended the directions player can move in, all eight directions now. Need to fix issue of player moving faster when going sideways. 
+    </p>
+    <p>AbstractEntity should probably inherit an interface called Movable</p>
+    <p>The interface Animated should probably not be inherited by the AbstractEntity, but rather by a concrete entity, This should be looked into</p>
+    <p>
+    The player now also rotates itself i beleive when moving in a certain direction.
+    </p>
+    <h5>DONE List:</h5>
+        <ul>
+            <li>refractored animations to be outside abstractEntity, however need to look into exstracting Animated interface out of AbstractEntity</li>
+            <li>Create simple tank sprites, or buy some</li>
+            <li>Exstend directions a player can move in</li>
+        </ul>
+    <h5>TODO List:</h5>
+        <ul>
+            <li>Implement bullets and turrets<li>
+            <li>Create propper animation handler</li>
+        </ul>
+</div>

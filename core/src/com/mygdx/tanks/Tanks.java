@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.tanks.player.Player;
-import com.mygdx.tanks.player.Player1Controller;
-import com.mygdx.tanks.player.Player2Controller;
+import com.mygdx.tanks.entities.Player;
+import com.mygdx.tanks.entities.controller.Player1Controller;
+import com.mygdx.tanks.entities.controller.Player2Controller;
 import com.badlogic.gdx.InputMultiplexer;
 
 public class Tanks extends ApplicationAdapter {

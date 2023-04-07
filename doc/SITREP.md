@@ -68,10 +68,14 @@
     <p>
     I would say that i am done with refractoring the code for now, Some movement was removed, however i find this to be OK since i am unsure of movement for now. However the code should be exstendable and editable. Therefore having compleated the objective of refractoring the player and the collision detection i merge CollisionPlayerRefracotr into main.
     </p>
+    <p>
+    I have refractored AbstractPlayer now AbstractEntity so that i can implement the bullet. However this poses the question of what to do with the animations. I exstracted the animation part of AbstractEntity into a subclass of player and created an interface the abstractentity can relate to to get out the active animation. This dosn't follow proper SOLID principles since the animation classes is both responsible of storing, and creating their animations. However it will work for now since i only intend to creat about three Spirtes(Player,Bullet,Enemy in future maybe)
+    </p>
     <h5>DONE List:</h5>
         <ul>
             <li>Implement collison with players and boundaries, need own Collidable class and follow SOLID principles</li>
             <li>refractor player to prevent furhter dry code<li>
+            <li>refractored animations to be outside abstractEntity</li>
         </ul>
     <h5>TODO List:</h5>
         <ul>

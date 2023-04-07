@@ -15,6 +15,7 @@ public class Player extends AbstractEntity{
         setSize(24,26);
         dir = Directions.north;
         this.animations = new PlayerAnimation(this);
+        this.setOrigin(this.getWidth() / 2, this.getHeight() / 2);
     }
     /**
      * A function handling input from Controllable player

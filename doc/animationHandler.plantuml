@@ -45,7 +45,7 @@ class Player1Controller implements Controllable{
 class Player2Controller implements Controllable{
     + registerInput()
 }
-class PlayerAnimations implements Animated {
+class PlayerAnimations {
     
 }
 

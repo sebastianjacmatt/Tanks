@@ -13,7 +13,6 @@ public abstract class AbstractEntity extends Sprite implements Collidable, Anima
     public AbstractEntity(Sprite sprite){
         super(sprite);
         this.sprite = sprite;
-        this.setOrigin(this.getWidth() / 2, this.getHeight() / 2);
     }
     @Override
     public void draw(Batch batch) {

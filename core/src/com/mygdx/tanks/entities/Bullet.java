@@ -26,27 +26,6 @@ public class Bullet extends AbstractEntity {
      * A method that keep the bullet moving
      */
     public void update(float delta) {
-        if (getDirection() == Directions.north) {
-            setY(getY() + speed);
-        } else if (getDirection() == Directions.south) {
-            setY(getY() - speed);
-        } else if (getDirection() == Directions.east) {
-            setX(getX() + speed);
-        } else if (getDirection() == Directions.west) {
-            setX(getX() - speed);
-        } else if (getDirection() == Directions.northEast) {
-            setX(getX() + speed);
-            setY(getY() + speed);
-        } else if (getDirection() == Directions.northWest) {
-            setX(getX() - speed);
-            setY(getY() + speed);
-        } else if (getDirection() == Directions.southEast) {
-            setX(getX() + speed);
-            setY(getY() - speed);
-        } else if (getDirection() == Directions.southWest) {
-            setX(getX() - speed);
-            setY(getY() - speed);
-        }
+        //setPosition(getX() + velocity.x, getY() + velocity.y);
     }
-    
 }

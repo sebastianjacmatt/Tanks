@@ -122,6 +122,7 @@ public class Tanks extends ApplicationAdapter {
 		float prevX = player.getX();
 		float prevY = player.getY();
 		player.move(deltaX, deltaY);
+		player.update(Gdx.graphics.getDeltaTime());
 		if (detectCollisions(player)) {
 			player.setX(prevX);
 			player.setY(prevY);

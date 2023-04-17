@@ -1,22 +1,33 @@
 package com.mygdx.tanks.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.tanks.Collidable;
 import com.mygdx.tanks.Directions;
 
 public abstract class AbstractEntity extends Sprite implements Collidable{
+    private Vector2 velocity;
     private Sprite sprite;
     private Directions dir;
+    private float speed;
     public AbstractEntity(Sprite sprite){
         super(sprite);
         this.sprite = sprite;
         dir = Directions.north;
+        this.speed = 100f;
+        this.velocity = new Vector2(0f,0f);
+
     }
     @Override
     public void draw(Batch batch) {
+        update(Gdx.graphics.getDeltaTime());
         batch.draw(sprite, getX(), getY());
+    }
+    public void update(float delta){
+        setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
     }
     /**
      * A function to handle movement of entity, is left to inheriting entity to implement
@@ -25,53 +36,49 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
     public void move(float deltaX, float deltaY) {
         if (deltaY > 0 && deltaX == 0) {
             dir = Directions.north;
-            setY((getY() + deltaY));
+            setVelocity(new Vector2(0 * getSpeed(), 1 * getSpeed()));
             super.setRotation(0);
-        }
-        else if (deltaX > 0 && deltaY == 0) {
+        } else if (deltaX > 0 && deltaY == 0) {
             dir = Directions.east;
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(1 * getSpeed(), 0 * getSpeed()));
             super.setRotation(270);
-        }
-        else if (deltaY < 0 && deltaX == 0) {
+        } else if (deltaY < 0 && deltaX == 0) {
             dir = Directions.south;
-            setY((getY() + deltaY));
+            setVelocity(new Vector2(0 * getSpeed(), -1 * getSpeed()));
             super.setRotation(180);
-        }
-        else if (deltaX < 0 && deltaY == 0) {
+        } else if (deltaX < 0 && deltaY == 0) {
             dir = Directions.west;
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(-1 * getSpeed(), 0 * getSpeed()));
             super.setRotation(90);
-        }
-        else if (deltaX > 0 && deltaY > 0) {
+        } else if (deltaX > 0 && deltaY > 0) {
             dir = Directions.northEast;
-            setY((getY() + deltaY));
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(1 * getSpeed(), 1 * getSpeed()));
             super.setRotation(315);
-        }
-        else if (deltaX > 0 && deltaY < 0) {
+        } else if (deltaX > 0 && deltaY < 0) {
             dir = Directions.southEast;
-            setY((getY() + deltaY));
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(1 * getSpeed(), -1 * getSpeed()));
             super.setRotation(225);
-        }
-        else if (deltaX < 0 && deltaY < 0) {
+        } else if (deltaX < 0 && deltaY < 0) {
             dir = Directions.southWest;
-            setY((getY() + deltaY));
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(-1 * getSpeed(), -1 * getSpeed()));
             super.setRotation(135);
-        }
-        else if (deltaX < 0 && deltaY > 0) {
+        } else if (deltaX < 0 && deltaY > 0) {
             dir = Directions.northWest;
-            setY((getY() + deltaY));
-            setX((getX() + deltaX));
+            setVelocity(new Vector2(-1 * getSpeed(), 1 * getSpeed()));
             super.setRotation(45);
-        }
-        else {
+        } else {
             dir = Directions.idle;
-            setX(getX());
-            setY(getY());
+            setVelocity(new Vector2(0, 0));
         }
+    }
+    public float getSpeed(){
+        return speed;
+    }
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+    public Vector2 getVelocity() {
+        return velocity;
     }
     public Sprite getSprite(){
         return sprite;

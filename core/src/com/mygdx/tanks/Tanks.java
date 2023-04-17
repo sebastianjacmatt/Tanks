@@ -60,6 +60,8 @@ public class Tanks extends ApplicationAdapter {
 		playerController.put(playerList.get(0),new Player1Controller());
 		playerController.put(playerList.get(1),new Player2Controller());
 
+		bulletList = new ArrayList<Bullet>();
+
 	}
 
 	@Override
@@ -84,6 +86,9 @@ public class Tanks extends ApplicationAdapter {
 		for (Player player : playerList) {
 			player.draw(batch);
 		}
+		for (Bullet bullet : bulletList) {
+			bullet.draw(batch);
+		}
 		batch.end();
 	}
 	/**
@@ -97,6 +102,9 @@ public class Tanks extends ApplicationAdapter {
 			Controller controller = playerAndController.getValue();
 			
 			Move move = controller.registerInput();
+			if (controller.fire()) {
+				bulletList.add(player.fire());
+			}
 			checkPlayerCollision(player, move.getDeltaX(), move.getDeltaY());
 		}
 	}

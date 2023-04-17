@@ -32,4 +32,11 @@ public class Player2Controller implements Controller {
         }
         return new Move(0, 0);
     }
+    @Override
+    public boolean fire() {
+        if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+            return true;
+        }
+        return false;
+    }
 }

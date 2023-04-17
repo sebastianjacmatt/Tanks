@@ -1,4 +1,4 @@
-package com.mygdx.tanks.entities;
+package com.mygdx.tanks;
 
 public enum Directions {
     north,

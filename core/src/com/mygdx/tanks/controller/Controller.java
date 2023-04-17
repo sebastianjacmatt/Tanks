@@ -6,4 +6,9 @@ public interface Controller {
      * @return the enum directions 
      */
     public Move registerInput();
+    /**
+     * checks if player wants to fire bullet or not
+     * @return true if player fires
+     */
+    public boolean fire();
 }

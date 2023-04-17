@@ -1,13 +1,12 @@
 package com.mygdx.tanks.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.tanks.Collidable;
+import com.mygdx.tanks.Directions;
 
 public abstract class AbstractEntity extends Sprite implements Collidable{
-    //private float elapsedtime;
     private Sprite sprite;
     private Directions dir;
     public AbstractEntity(Sprite sprite){
@@ -17,7 +16,6 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
     }
     @Override
     public void draw(Batch batch) {
-        elapsedtime += Gdx.graphics.getDeltaTime();
         batch.draw(sprite, getX(), getY());
     }
     /**

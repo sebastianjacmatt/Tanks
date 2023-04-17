@@ -32,4 +32,11 @@ public class Player1Controller implements Controller {
         }
         return new Move(0, 0);
     }
+    @Override
+    public boolean fire() {
+        if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+            return true;
+        }
+        return false;
+    }
 }

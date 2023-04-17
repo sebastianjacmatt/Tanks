@@ -10,7 +10,7 @@ import com.mygdx.tanks.entities.animation.Animated;
 public abstract class AbstractEntity extends Sprite implements Collidable, Animated{
     private float elapsedtime;
     private Sprite sprite;
-    Directions dir;
+    private Directions dir;
     public AbstractEntity(Sprite sprite){
         super(sprite);
         this.sprite = sprite;
@@ -85,6 +85,9 @@ public abstract class AbstractEntity extends Sprite implements Collidable, Anima
         } catch (Exception e) {
             return Directions.north;
         }
+    }
+    public void setDirection(Directions dir){
+        this.dir = dir;
     }
     @Override
     public Rectangle getRectangle() {

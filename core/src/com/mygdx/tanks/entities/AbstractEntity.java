@@ -17,7 +17,7 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
         super(sprite);
         this.sprite = sprite;
         dir = Directions.north;
-        this.speed = 100f;
+        this.speed = 50f;
         this.velocity = new Vector2(0f,0f);
 
     }

@@ -27,7 +27,6 @@ public class Bullet extends AbstractEntity {
      * A method that keep the bullet moving
      */
     public void update(float delta) {
-        setX(getX() + velocity.x * delta);
-        setY(getY() + velocity.y * delta);
+        this.move(velocity.x, velocity.y);
     }
 }

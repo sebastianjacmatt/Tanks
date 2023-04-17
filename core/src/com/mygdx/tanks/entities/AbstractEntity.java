@@ -22,7 +22,7 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
      * A function to handle movement of entity, is left to inheriting entity to implement
      * TODO : Should maybe be an interface, movable
      */
-    public void move(int deltaX, int deltaY) {
+    public void move(float deltaX, float deltaY) {
         if (deltaY > 0 && deltaX == 0) {
             dir = Directions.north;
             setY((getY() + deltaY));

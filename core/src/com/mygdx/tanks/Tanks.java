@@ -118,7 +118,7 @@ public class Tanks extends ApplicationAdapter {
 		entity.setX(entity.getX() + move.getDeltaX());
 		entity.setY(entity.getY() + move.getDeltaY());
 	}
-	private void checkPlayerCollision(Player player, int deltaX, int deltaY){
+	private void checkPlayerCollision(Player player, float deltaX, float deltaY){
 		float prevX = player.getX();
 		float prevY = player.getY();
 		player.move(deltaX, deltaY);

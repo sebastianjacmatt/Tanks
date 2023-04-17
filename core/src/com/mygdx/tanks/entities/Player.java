@@ -27,7 +27,7 @@ public class Player extends AbstractEntity{
         batch.draw(animations.getActiveAnimation().getKeyFrame(elapsedtime, true), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
     }
     @Override
-    public void move(int deltaX, int deltaY) {
+    public void move(float deltaX, float deltaY) {
         super.move(deltaX, deltaY);
     }
     /**

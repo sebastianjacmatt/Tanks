@@ -1,16 +1,16 @@
 package com.mygdx.tanks.controller;
 
 public class Move {
-    private final int x;
-    private final int y;
-    public Move(int x, int y) {
+    private final float x;
+    private final float y;
+    public Move(float x, float y) {
         this.x = x;
         this.y = y;
     }
-    public int getDeltaX(){
+    public float getDeltaX(){
         return x;
     }
-    public int getDeltaY(){
+    public float getDeltaY(){
         return y;
     }
 }

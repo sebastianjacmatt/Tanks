@@ -1,36 +1,35 @@
-package com.mygdx.tanks.entities.controller;
+package com.mygdx.tanks.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.mygdx.tanks.entities.Directions;
 
-public class Player2Controller implements Controllable {
+public class Player2Controller implements Controller {
     public Player2Controller(){}
-    public Directions registerInput(){
+    public Move registerInput(){
         if (Gdx.input.isKeyPressed(Keys.UP) && Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            return Directions.northEast;
+            return new Move(1, 1);
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN) && Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            return Directions.southEast;
+            return new Move(1, -1);
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN) && Gdx.input.isKeyPressed(Keys.LEFT)) {
-            return Directions.southWest;
+            return new Move(-1, -1);
         }
         if (Gdx.input.isKeyPressed(Keys.UP) && Gdx.input.isKeyPressed(Keys.LEFT)) {
-            return Directions.northWest;
+            return new Move(-1, 1);
         }
         if (Gdx.input.isKeyPressed(Keys.UP)) {
-            return Directions.north;
+            return new Move(0, 1);
         }
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            return Directions.east;
+            return new Move(1, 0);
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            return Directions.south;
+            return new Move(0, -1);
         }
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            return Directions.west;
+            return new Move(-1, 0);
         }
-        return Directions.idle;
+        return new Move(0, 0);
     }
 }

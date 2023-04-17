@@ -1,6 +1,7 @@
 package com.mygdx.tanks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -11,9 +12,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.tanks.controller.Controller;
+import com.mygdx.tanks.controller.Move;
+import com.mygdx.tanks.controller.Player1Controller;
+import com.mygdx.tanks.controller.Player2Controller;
+import com.mygdx.tanks.entities.AbstractEntity;
+import com.mygdx.tanks.entities.Bullet;
 import com.mygdx.tanks.entities.Player;
-import com.mygdx.tanks.entities.controller.Player1Controller;
-import com.mygdx.tanks.entities.controller.Player2Controller;
 
 public class Tanks extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -26,8 +31,10 @@ public class Tanks extends ApplicationAdapter {
 	private Map map;
 
 	private CollisionDetector collisionDetector;
-
+	
+	private HashMap<Player, Controller> playerController;
 	private ArrayList<Bullet> bulletList;
+
 
 	@Override
 	public void create () {
@@ -36,8 +43,8 @@ public class Tanks extends ApplicationAdapter {
 		map = new Map("assets/tileMapTest1.tmx");
 
 		playerList = new ArrayList<Player>();
-		playerList.add(new Player(img,new Player1Controller()));
-		playerList.add(new Player(img,new Player2Controller()));
+		playerList.add(new Player(img));
+		playerList.add(new Player(img));
 		
         // Create a camera that will show the map
         camera = new OrthographicCamera();
@@ -46,8 +53,13 @@ public class Tanks extends ApplicationAdapter {
 
         // Create a TiledMapRenderer to render the map
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map.getTileMap(), 1f);
-
+		
 		collisionDetector = new CollisionDetector(map);
+
+		playerController = new HashMap<Player, Controller>();
+		playerController.put(playerList.get(0),new Player1Controller());
+		playerController.put(playerList.get(1),new Player2Controller());
+
 	}
 
 	@Override
@@ -80,14 +92,28 @@ public class Tanks extends ApplicationAdapter {
 	 * @param delta set to Gdx.graphics.getDeltaTime
 	 */
 	private void update(float delta){
-		for (Player player : playerList) {
-			checkPlayerCollision(player);
+		for (HashMap.Entry<Player, Controller> playerAndController : playerController.entrySet()) {
+			Player player = playerAndController.getKey();
+			Controller controller = playerAndController.getValue();
+			
+			Move move = controller.registerInput();
+			checkPlayerCollision(player, move.getDeltaX(), move.getDeltaY());
 		}
 	}
-	private void checkPlayerCollision(Player player){
+	/**
+	 * a method moving AbstractEntities
+	 * @param entity
+	 * @param move 
+	 * @return true if collides with map
+	 */
+	private void moveEntity(AbstractEntity entity,Move move){
+		entity.setX(entity.getX() + move.getDeltaX());
+		entity.setY(entity.getY() + move.getDeltaY());
+	}
+	private void checkPlayerCollision(Player player, int deltaX, int deltaY){
 		float prevX = player.getX();
 		float prevY = player.getY();
-		player.move();
+		player.move(deltaX, deltaY);
 		if (detectCollisions(player)) {
 			player.setX(prevX);
 			player.setY(prevY);

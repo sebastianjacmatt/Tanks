@@ -67,7 +67,7 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
             setVelocity(new Vector2(-1 * getSpeed(), 1 * getSpeed()));
             super.setRotation(45);
         } else {
-            dir = Directions.idle;
+            //dir = Directions.idle;
             setVelocity(new Vector2(0, 0));
         }
     }

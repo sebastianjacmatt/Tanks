@@ -3,17 +3,16 @@ package com.mygdx.tanks.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.tanks.Directions;
+import com.badlogic.gdx.math.Vector2;
 
 public class Bullet extends AbstractEntity {
-    public Bullet(Sprite sprite,float x, float y,float speed, Directions dir) {
+    public Bullet(Sprite sprite,float x, float y, float rotation, Vector2 velocity) {
         super(sprite);
         setX(x);
         setY(y);
-        setDirection(dir);
+        setRotation(rotation);
+        setVelocity(velocity);
 
-        //TODO : remove debugging
-        setScale(4, 4);
     }
     @Override
     public void draw(Batch batch) {
@@ -24,6 +23,6 @@ public class Bullet extends AbstractEntity {
      * A method that keep the bullet moving
      */
     public void update(float delta) {
-        //setPosition(getX() + velocity.x, getY() + velocity.y);
+        setPosition(getX() + getVelocity().x, getY() + getVelocity().y);
     }
 }

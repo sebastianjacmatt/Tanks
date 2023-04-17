@@ -7,16 +7,6 @@ import com.mygdx.tanks.entities.Player;
 
 public class PlayerAnimation {
     private Animation<TextureRegion> northAnim;
-    /*
-    private Animation<TextureRegion> eastAnim;
-    private Animation<TextureRegion> southAnim;
-    private Animation<TextureRegion> westAnim;
-    private Animation<TextureRegion> northEastAnim;
-    private Animation<TextureRegion> southEastAnim;
-    private Animation<TextureRegion> southWestAnim;
-    private Animation<TextureRegion> northWestAnim;
-    */
-
     Player player;
     public PlayerAnimation(Player player){
         this.player = player;

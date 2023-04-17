@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.tanks.Collidable;
 import com.mygdx.tanks.entities.animation.Animated;
 
-public abstract class AbstractEntity extends Sprite implements Collidable, Animated{
+public abstract class AbstractEntity extends Sprite implements Collidable{
     private float elapsedtime;
     private Sprite sprite;
     public AbstractEntity(Sprite sprite){

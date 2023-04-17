@@ -66,8 +66,4 @@ public class Player extends AbstractEntity{
             return Directions.north;
         }
     }
-    @Override
-    public Animation<TextureRegion> getActiveAnimation() {
-        return animations.getActiveAnimation();
-    }
 }

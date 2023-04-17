@@ -3,8 +3,9 @@ package com.mygdx.tanks.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.tanks.entities.animation.Animated;
 import com.mygdx.tanks.entities.animation.PlayerAnimation;
-public class Player extends AbstractEntity{
+public class Player extends AbstractEntity implements Animated{
     protected Directions dir;
     private PlayerAnimation animations;
     public Player(Sprite sprite){

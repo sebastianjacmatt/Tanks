@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.tanks.Collidable;
-import com.mygdx.tanks.entities.animation.Animated;
 
-public abstract class AbstractEntity extends Sprite implements Collidable, Animated{
-    private float elapsedtime;
+public abstract class AbstractEntity extends Sprite implements Collidable{
+    //private float elapsedtime;
     private Sprite sprite;
     private Directions dir;
     public AbstractEntity(Sprite sprite){
@@ -19,7 +18,7 @@ public abstract class AbstractEntity extends Sprite implements Collidable, Anima
     @Override
     public void draw(Batch batch) {
         elapsedtime += Gdx.graphics.getDeltaTime();
-        batch.draw(getActiveAnimation().getKeyFrame(elapsedtime, true), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+        batch.draw(sprite, getX(), getY());
     }
     /**
      * A function to handle movement of entity, is left to inheriting entity to implement

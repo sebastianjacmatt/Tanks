@@ -74,6 +74,9 @@ public abstract class AbstractEntity extends Sprite implements Collidable{
     public float getSpeed(){
         return speed;
     }
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
     public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }

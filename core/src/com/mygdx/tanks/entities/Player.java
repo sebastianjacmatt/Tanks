@@ -3,7 +3,6 @@ package com.mygdx.tanks.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.tanks.Directions;
 import com.mygdx.tanks.entities.animation.PlayerAnimation;
 public class Player extends AbstractEntity{
@@ -34,6 +33,6 @@ public class Player extends AbstractEntity{
      * Fires a bullet for player
      */
     public Bullet fire() {
-        return bulletFactory.produceBullet(getX(), getY(), new Vector2(20,20), getDirection());
+        return bulletFactory.produceBullet(getX(), getY(), 1.3f,getDirection());
     }
 }

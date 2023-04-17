@@ -3,17 +3,16 @@ package com.mygdx.tanks.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.tanks.Directions;
 
 public class Bullet extends AbstractEntity {
-    private Vector2 velocity;
-    public Bullet(Sprite sprite,float x, float y,Vector2 velocity, Directions dir) {
+    private float speed;
+    public Bullet(Sprite sprite,float x, float y,float speed, Directions dir) {
         super(sprite);
         setX(x);
         setY(y);
         setDirection(dir);
-        this.velocity = velocity;
+        this.speed = speed;
 
         //TODO : remove debugging
         setScale(4, 4);
@@ -27,6 +26,27 @@ public class Bullet extends AbstractEntity {
      * A method that keep the bullet moving
      */
     public void update(float delta) {
-        this.move(velocity.x, velocity.y);
+        if (getDirection() == Directions.north) {
+            setY(getY() + speed);
+        } else if (getDirection() == Directions.south) {
+            setY(getY() - speed);
+        } else if (getDirection() == Directions.east) {
+            setX(getX() + speed);
+        } else if (getDirection() == Directions.west) {
+            setX(getX() - speed);
+        } else if (getDirection() == Directions.northEast) {
+            setX(getX() + speed);
+            setY(getY() + speed);
+        } else if (getDirection() == Directions.northWest) {
+            setX(getX() - speed);
+            setY(getY() + speed);
+        } else if (getDirection() == Directions.southEast) {
+            setX(getX() + speed);
+            setY(getY() - speed);
+        } else if (getDirection() == Directions.southWest) {
+            setX(getX() - speed);
+            setY(getY() - speed);
+        }
     }
+    
 }

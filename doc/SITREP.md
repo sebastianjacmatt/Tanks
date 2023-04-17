@@ -86,7 +86,7 @@
         </ul>
 </div>
 <div>
-    <h2>SITREP(07.06.2023)</h2>
+    <h2>SITREP(07.04.2023)</h2>
     <p>
     I extended the directions player can move in, all eight directions now. Need to fix issue of player moving faster when going sideways. 
     </p>
@@ -104,6 +104,25 @@
     <h5>TODO List:</h5>
         <ul>
             <li>Implement bullets and turrets<li>
+            <li>Create propper animation handler</li>
+        </ul>
+</div>
+
+<div>
+    <h2>SITREP(17.04.2023)</h2>
+    <p>I merged animationHandling into main branch, and created a new branch "bullets which will be used to implement bullet mechanic"</p>
+    <p>Bullets will be handled like enteties, so they should inherit the AbstractEntity. Bullets are a much more simpler entity than the tanks(players). They have, constant velocity, they have a changable direction(changes when hitting wall). To allow the player to shoot it would be nice to implement a BulletFactory and assign each player their own. This way the player has quick access to bullets of different variaties and also at player defined positions.</p>
+    <h5>DONE List:</h5>
+        <ul>
+        </ul>
+    <h5>TODO List:</h5>
+        <ul>
+            <li>create bullet class</li>
+            <li>create bullet factory</li>
+            <li>assign player a bullet factory</li>
+            <li>implement functionality for player to shoot</li>
+            <li>Handle collision kill with bullet</li>
+            <li>create animation for bullet</li>
             <li>Create propper animation handler</li>
         </ul>
 </div>

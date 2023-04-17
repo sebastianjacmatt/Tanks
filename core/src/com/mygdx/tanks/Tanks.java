@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.tanks.entities.Player;
 import com.mygdx.tanks.entities.controller.Player1Controller;
 import com.mygdx.tanks.entities.controller.Player2Controller;
-import com.badlogic.gdx.InputMultiplexer;
 
 public class Tanks extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -27,7 +26,8 @@ public class Tanks extends ApplicationAdapter {
 	private Map map;
 
 	private CollisionDetector collisionDetector;
-	InputMultiplexer inputMultiplexer;
+
+	private ArrayList<Bullet> bulletList;
 
 	@Override
 	public void create () {

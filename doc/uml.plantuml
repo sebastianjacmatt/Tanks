@@ -6,10 +6,13 @@ interface Collidable {
 interface Controllable {
   enum DIRECTIONS up,down,left,right,udle
   + registerInput()
-
+}
+interface Animated {
+    enum ANIMATION every animation type,
+    + getActiveAnimation()
 }
 
-abstract class AbstractPlayer implements Collidable {
+abstract class AbstractEntity implements Collidable {
     - collidables : ArrayList
     - elapsedtime : float
     - currentActiveAnimation : Animation
@@ -24,14 +27,12 @@ abstract class AbstractPlayer implements Collidable {
     # move()
     - createAnimation() 
 }
-
 class CollisionDetector {
     - map : Map
-
     + detectCollisions(collidable: Collidable)
 }
 
-class Player implements Collidable {
+class Player {
     + move()
 }
 class Player1Controller implements Controllable{
@@ -39,6 +40,15 @@ class Player1Controller implements Controllable{
 }
 class Player2Controller implements Controllable{
     + registerInput()
+}
+class PlayerAnimations {
+    
+}
+class Bullet {
+
+}
+class BulletFactory {
+    + produceBullet() : Bullet
 }
 
 class Map {
@@ -82,6 +92,13 @@ Tanks --> Player
 CollisionDetector --> Map
 CollisionDetector --> Collidable
 
-Player --|> AbstractPlayer
-Player --> Controllable : assigns a controller on creation
+Player --|> AbstractEntity
+Player --> Controllable : assigns a controller
+Player --> PlayerAnimations
+Player --> BulletFactory
+
+AbstractEntity --|> Animated
+Bullet --|> AbstractEntity
+BulletFactory --> Bullet : create
+
 @enduml
